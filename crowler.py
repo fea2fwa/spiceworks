@@ -1,6 +1,7 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-from datetime import datetime as dt 
+from datetime import datetime as dt
+from userstats import userpostnum
 
 time_output=open("dellhw-posttime.txt", "w+", encoding="UTF-8")
 questioner_output=open("dellhw-questioner.txt", "w+", encoding="UTF-8")
@@ -15,7 +16,7 @@ def getPosttime(threadId,obj):
       posttimes.append(body.get_text())
  
    tmptime=posttimes[0]
-   initpost=dt.strptime(tmptime, '%b %d, %Y at %H:%M UTC').strftime('%Y/%m/%d %H:%M')
+   initpost=dt.strptime(tmptime, '%b %d, %Y at %H:%M UTC').strftime('%Y/%m/%d %H:%M,%a')
    time_output.write(initpost+"\n")
 
 def getThreadtitle(threadId,obj):
@@ -68,7 +69,7 @@ def getThreadreplies(threadId,obj):
 # endId=int(endId)+1
 
 startId=2304546
-endId=2304820
+endId=2305000
 
 for i in range(int(startId), int(endId)):
    try:
@@ -87,6 +88,10 @@ for i in range(int(startId), int(endId)):
       getThreadquestion(i,bsObjTemp)
       getThreadreplies(i,bsObjTemp)
 
-# questioner_output.close()
-# replier_output.close()
-# text_output.close()
+time_output.close()
+questioner_output.close()
+replier_output.close()
+text_output.close()
+
+
+userpostnum()
