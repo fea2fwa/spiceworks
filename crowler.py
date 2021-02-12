@@ -1,7 +1,6 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from datetime import datetime as dt
-from userstats import userpostnum
 
 time_output=open("dellhw-posttime.txt", "w+", encoding="UTF-8")
 questioner_output=open("dellhw-questioner.txt", "w+", encoding="UTF-8")
@@ -93,5 +92,3 @@ questioner_output.close()
 replier_output.close()
 text_output.close()
 
-
-userpostnum()
