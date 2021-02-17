@@ -67,8 +67,9 @@ def getThreadreplies(threadId,obj):
 # endId=input("Enter the last thread# which in Spriceworks forum site: ")
 # endId=int(endId)+1
 
-startId=2304546
-endId=2305000
+# startId=2261000
+startId=2287012
+endId=2306530
 
 for i in range(int(startId), int(endId)):
    try:
@@ -79,13 +80,18 @@ for i in range(int(startId), int(endId)):
       bsObjTemp=BeautifulSoup(htmltemp)
       templist=bsObjTemp.findAll("span",{"class":"topic-chip forum-chip"})
       templist=str(templist)
+   finally:
+      pass
 
-   if "/hardware/dell" in templist:
-      getPosttime(i,bsObjTemp)
-      getThreadtitle(i,bsObjTemp)
-      getParticipants(i,bsObjTemp)
-      getThreadquestion(i,bsObjTemp)
-      getThreadreplies(i,bsObjTemp)
+   try:
+      if  "/hardware/dell" in templist:
+         getPosttime(i,bsObjTemp)
+         getThreadtitle(i,bsObjTemp)
+         getParticipants(i,bsObjTemp)
+         getThreadquestion(i,bsObjTemp)
+         getThreadreplies(i,bsObjTemp)
+   except:
+      pass
 
 time_output.close()
 questioner_output.close()
